@@ -27,6 +27,7 @@ function App() {
   //////////
   const [randomJoke, setRandomJoke] = useState([]);
   const [jokeList, setJokeList] = useState([]);
+  const [showError, setShowError] = useState(false);
 
   //make get request
   const makeRequest = (Page) => {
@@ -68,7 +69,7 @@ function App() {
         console.log(response.data)
         setJokeList(response.data)
       }).then(() => {
-        makeRequest(1)
+        //makeRequest(1)
       })
     }, 10)
   }, [])
@@ -80,26 +81,53 @@ function App() {
     //e.preventDefault();
     console.log(randomJoke.value)
     console.log(randomJoke.created_at)
-    
     axios({
-      method: 'post',
-      url: 'http://localhost:8000/items/add',
-      responseType: 'json',
+      method: 'get',
+      url: 'http://localhost:8000/items',
       headers: {
-          'Accept': 'application/json',
           "Content-Type": "application/json"
-      },
-      data : {
-          value: randomJoke.value,
-          created_at: randomJoke.created_at
       }
     })
-    .then((response) =>  {
-      console.log(response)
+    .then((response) => {
+      console.log(response.data)
+      setJokeList(response.data)
+      response.data.forEach((item) => {
+        console.log(item)
+        
+        if(item.value === randomJoke.value){
+          console.log(item.value)
+          console.log(randomJoke.value)
+          console.log("equal values")
+          setShowError(true)
+        } else {
+          setShowError(false)
+        }
+      })
+    }).then(() => {
+      //
+      axios({
+        method: 'post',
+        url: 'http://localhost:8000/items/add',
+        responseType: 'json',
+        headers: {
+            'Accept': 'application/json',
+            "Content-Type": "application/json"
+        },
+        data : {
+            value: randomJoke.value,
+            created_at: randomJoke.created_at
+        }
+      })
+      .then((response) =>  {
+        console.log(response)
+      })
+      .then((response) =>  {
+        setRandomJoke([])
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     })
-    .catch((error) => {
-      console.log(error);
-    });
   }
 
   const handleClickGanarate = (e) => {
@@ -118,26 +146,29 @@ function App() {
         setRandomJoke(response.data);
         console.log(response.data)
       })
-    
-    //addItem(itemName.trim())
-    setItemName("");
   }
 
   //Delete/Cancel
   const handleClickDeleteCancel = (e) => {
-    if(e.target.name === "Delete"){
-      axios.delete(`https://new-website-todo.herokuapp.com/items/delete/${e.target.value}`, {
-        body: e.target.value
+    
+    console.log(e.target.value)
+    setTxtDeleteButton("Restore");
+
+    if(e.target.name === "Delete from data"){
+      axios.delete(`http://localhost:8000/items/delete/${e.target.id}`, {
+        body: e.target.id
       })
       .then(() => {
+        setTxtDeleteButton("Restore");
         window.location.reload();
       })
     } else {
     
       setVisibilityEditInputContainer("input-edit-container-hidden")
       setTxtEditButton("Edit");
-      setTxtDeleteButton("Delete");
+      //setTxtDeleteButton("Delete");
     }
+    
   }
 
   
@@ -160,9 +191,12 @@ function App() {
               <Button size="medium" onClick={handleClickAdd} id="input-button" type="submit">ADD</Button>
               <Button size="medium" onClick={handleClickGanarate} id="input-button" type="submit">Ganarate</Button>
             </Box>  
+            {showError &&
+                  <span>try other joke</span>
+            }
         </Box>
         
-            {items.map((item, index) => (
+            {jokeList.map((item, index) => (
               <Box 
                 key={item._id} 
                 sx={{   
@@ -173,8 +207,10 @@ function App() {
                   paddingBottom: "8.5px",
                   paddingTop: "8.5px"
                 }}>
+                <p>{item.value}</p>
+                <span>{item.created_at}</span>
                 <Box>
-                  <Button onClick={handleClickDeleteCancel} value={item._id} className="delete-btn" name={txtDeleteButton} >{txtDeleteButton}</Button>
+                  <Button onClick={handleClickDeleteCancel} id={item._id} className="delete-btn" name={txtDeleteButton} onChange={(e) => {}}>{txtDeleteButton}</Button>
                 </Box>
               </Box>
             ))}
