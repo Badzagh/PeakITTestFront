@@ -51,7 +51,7 @@ function App() {
       if(!error){
         axios({
           method: 'post',
-          url: 'http://localhost:8000/items/add',
+          url: 'https://node-js-joke-list.herokuapp.com/items/add',
           responseType: 'json',
           headers: {
               'Accept': 'application/json',
