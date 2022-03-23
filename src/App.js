@@ -25,7 +25,7 @@ function App() {
     //check equal values
     axios({
       method: 'get',
-      url: 'http://localhost:8000/items',
+      url: 'https://node-js-joke-list.herokuapp.com/items',
       headers: {
           "Content-Type": "application/json"
       }

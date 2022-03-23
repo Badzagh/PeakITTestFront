@@ -4,7 +4,7 @@ import { useState } from "react";
 export const makeRequestChange = (isDeleted,opacity,textDecoration, id) => {
     axios({
         method: 'put',
-        url: `http://localhost:8000/items/change/${id}`,
+        url: `https://node-js-joke-list.herokuapp.com/items/change/${id}`,
         responseType: 'json',
         data : {
             is_deleted: isDeleted,
@@ -19,7 +19,7 @@ export const makeRequestChange = (isDeleted,opacity,textDecoration, id) => {
 export const makeRequestJokeList = ({setJokeList}) => {
     axios({
         method: 'get',
-        url: 'http://localhost:8000/items',
+        url: 'https://node-js-joke-list.herokuapp.com/items',
         headers: {
             "Content-Type": "application/json"
         }
