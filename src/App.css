@@ -1,106 +1,33 @@
-.header {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+#app {
+  margin: 20px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #DBE2EF;
-  position: absolute;
-  z-index: -1;
-  height: 270px;
-  right: 0;
-  left: 0;
 }
 span {
   overflow: hidden;
   text-overflow: ellipsis;
   height: 20px;
 }
-.input-add-container {
+.container {
   display: flex;
   flex-wrap: nowrap;
+  flex-direction: column;
+  margin-bottom: 10px;
+  border: 2px solid #bdbdbd;
+  border-radius: 10px;
+  padding: 8px;
 }
-.list-container {
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  height: 240px;
-  background-color: #F9F7F7;
-  box-shadow: 0px 0px 6px 0px;
+#button-add {
+  background-color: #112D4E;
+  color: #F9F7F7;
+  margin-bottom: 10px;
 }
-#input-button {
+#button-generate {
   background-color: #112D4E;
   color: #F9F7F7;
   margin-left: 10px;
-}
-.edit-btn {
-  cursor: pointer;
-  height: 20px;
-  border: none;
-  background-color: #3F72AF;
-  color: #F9F7F7;
-  width: 45px;
-  height: 20px;
-  margin-right: 10px;margin-left: 10px;
-}
-.input-edit-container-hidden {
-  visibility: hidden;
-  opacity: 0;
-}
-.input-edit-container-0 {
-  visibility: visible;
-  opacity: 1;
-  position: absolute;
-  width: 10vh;
-  height: 22px;
-  margin-left: 30px;
-  top: 300px;
-  background-color: #F9F7F7;
-}
-.input-edit-container-1 {
-  visibility: visible;
-  opacity: 1;
-  position: absolute;
-  top: 340px;
-  width: 10vh;
-  height: 22px;
-  margin-left: 30px;
-  background-color: #F9F7F7;
-}
-.input-edit-container-2 {
-  visibility: visible;
-  opacity: 1;
-  position: absolute;
-  top: 383px;
-  width: 10vh;
-  height: 22px;
-  margin-left: 30px;
-  background-color: #F9F7F7;
-}
-.input-edit-container-3 {
-  visibility: visible;
-  opacity: 1;
-  position: absolute;
-  top: 425px;
-  width: 10vh;
-  height: 22px;
-  margin-left: 30px;
-  background-color: #F9F7F7;
-}
-.input-edit-container-4 {
-  visibility: visible;
-  opacity: 1;
-  position: absolute;
-  top: 468px;
-  width: 10vh;
-  height: 22px;
-  margin-left: 30px;
-  background-color: #F9F7F7;
-}
-.input-edit {
-  position: absolute;
-  z-index: 1;
+  margin-bottom: 10px;
 }
 .delete-btn {
   cursor: pointer;
@@ -111,26 +38,6 @@ span {
   width: 55px;
   height: 20px;
 }
-.save-btn {
-  cursor: pointer;
-  width: 45px;
-  height: 20px;
-  border: none;
-  background-color: #3F72AF;
-  color: #F9F7F7;
-  margin-left: 395px;
-  position: absolute;
-  z-index: 1;
-}
-.cancel-btn {
-  cursor: pointer;
-  width: 55px;
-  height: 20px;
-  border: none;
-  background-color: #112D4E;
-  color: white;
-  margin-left: 450px;
-  position: absolute;
-  z-index: 1;
-}
+
+
 
